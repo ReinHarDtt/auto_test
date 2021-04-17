@@ -1,14 +1,14 @@
 /*
  * @Author: your name
  * @Date: 2021-05-06 15:40:10
- * @LastEditTime: 2021-05-06 16:26:35
+ * @LastEditTime: 2021-05-07 09:56:50
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \auto_test\index.js
  */
 const cmd = require("./cmd");
 const file = require("./file");
-let day = 10;
+let day = 20;
 
 const random = (lower, upper) => {
  return Math.floor(Math.random() * (upper - lower + 1)) + lower;
@@ -26,7 +26,7 @@ const commit = async () => {
   return;
  }
  let commitNumber = random(1, 10);
- let dayNumber = random(1, 3);
+ let dayNumber = random(1, 10);
  while (commitNumber) {
   await file(commitTime);
   await cmd("git status");
@@ -34,7 +34,7 @@ const commit = async () => {
   await cmd(`git commit -m "${commitTime}" --no-edit --date="${commitTime}"`);
   commitNumber--;
  }
- if (day >= 10) {
+ if (day >= 0) {
   day -= dayNumber;
   commit();
  } else {
